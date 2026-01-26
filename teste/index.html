@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        .conteudo.ativo {
+        display: block; /* Mostra apenas o que tiver a classe 'ativo' */
+        }
+    </style>
+</head>
+<body>
+<nav>
+  <button onclick="mostrarSecao('home')">Home </button>
+  <button onclick="mostrarSecao('sobre')">Sobre</button>
+  <button onclick="mostrarSecao('contato')">Contato</button>
+</nav>
+
+<section id="home" class="conteudo">
+  <h1>Bem-vindo à Home</h1>
+</section>
+
+<section id="sobre" class="conteudo" style="display: none;">
+  <h1>Sobre Nós</h1>
+</section>
+
+<section id="contato" class="conteudo" style="display: none;">
+  <h1>Entre em Contato</h1>
+</section>
+<script>
+ function mostrarSecao(idDaSecao) {
+  // 1. Seleciona todas as seções que têm a classe 'conteudo'
+  const secoes = document.querySelectorAll('.conteudo');
+
+  // 2. Esconde cada uma delas percorrendo a lista
+  secoes.forEach(secao => {
+    secao.style.display = 'none';
+  });
+
+  // 3. Mostra apenas a seção que o usuário clicou usando o ID
+  const secaoParaMostrar = document.getElementById(idDaSecao);
+  secaoParaMostrar.style.display = 'block';
+}
+</script>
+</body>
+</html>

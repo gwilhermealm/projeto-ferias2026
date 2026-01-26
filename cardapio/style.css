@@ -57,6 +57,13 @@ header nav {
 header nav:hover {
     color: var(--accent-color);
 }
+button{
+      text-decoration: none;
+      border: none;
+      padding: 5px;
+      border-radius: 4px;
+      background-color: var(--accent-color);
+}
 
 /* Layout Principal */
 main {
@@ -110,7 +117,7 @@ article p:last-child {
     font-size: 1.1rem;
     margin-top: 5px;
 }
-
+ 
 /* Responsividade para Telas Pequenas */
 @media (max-width: 600px) {
     article {
@@ -165,11 +172,10 @@ article p:last-child {
 }
 
 /* Esconder a barra de rolagem (opcional, para um visual mais limpo) */
-.carousel-nav::-webkit-scrollbar {
-    
-}
+
 .carousel-nav {
     -ms-overflow-style: none;  /* Esconde no IE/Edge */
     scrollbar-width: none;     /* Esconde no Firefox */
 }
 }
+ 
