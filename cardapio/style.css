@@ -1,0 +1,175 @@
+/* Definição das Variáveis de Cores e Estilo */
+:root {
+    --primary-color: #e63946;    /* Vermelho vibrante para destaque */
+    --secondary-color: #f1faee;  /* Fundo suave */
+    --accent-color: #ffb703;     /* Amarelo para preços/botões */
+    --text-dark: #1d3557;        /* Texto principal */
+    --text-light: #f1faee;       /* Texto em fundos escuros */
+    --bg-card: #ffffff;          /* Fundo dos itens do cardápio */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Header e Navegação */
+header {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 2rem 1rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:  1rem;
+}
+
+header h1 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+header nav {
+    display: inline-block;
+    margin: 0 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+    text-transform: capitalize;
+}
+
+header nav:hover {
+    color: var(--accent-color);
+}
+
+/* Layout Principal */
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+h2 {
+    border-left: 5px solid var(--primary-color);
+    padding-left: 10px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+/* Estilização do Card (Article) */
+article {
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+    transition: transform 0.2s;
+}
+
+article:hover {
+    transform: translateY(-5px);
+}
+
+/* Imagem do Produto */
+article img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: #eee; /* Cor de fundo caso a imagem falhe */
+}
+
+/* Informações do Produto */
+article h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+article p:last-child {
+    font-weight: bold;
+    color: #2a9d8f; /* Cor de destaque para o preço */
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+
+/* Responsividade para Telas Pequenas */
+@media (max-width: 600px) {
+    article {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    header nav {
+       
+        margin: 10px 0;
+    }
+    .menu-horizontal {
+    display: flex;            /* Coloca os itens em linha */
+    justify-content: center;  /* Centraliza na horizontal */
+    gap: 20px;                /* Espaço entre os links */
+    list-style: none;
+}
+
+/* Container do Carrossel */
+.carousel-nav {
+    display: flex;
+    flex-wrap: nowrap;       /* Obriga os itens a ficarem na mesma linha */
+    overflow-x: auto;        /* Ativa o scroll horizontal */
+    padding: 10px 20px;
+    gap: 15px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Melhora o deslize no iPhone */
+    
+    /* Efeito de "imã" (Scroll Snap) */
+    scroll-snap-type: x mandatory;
+}
+
+/* Estilo dos Links/Botões */
+.carousel-nav a {
+    flex: 0 0 auto;          /* Impede que o link encolha */
+    scroll-snap-align: center; /* Faz o item parar no meio ao deslizar */
+    
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    white-space: nowrap;     /* Garante que o texto não quebre linha */
+    transition: background 0.3s;
+}
+
+.carousel-nav a:hover {
+    background-color: var(--accent-color);
+    color: var(--text-dark);
+}
+
+/* Esconder a barra de rolagem (opcional, para um visual mais limpo) */
+.carousel-nav::-webkit-scrollbar {
+    
+}
+.carousel-nav {
+    -ms-overflow-style: none;  /* Esconde no IE/Edge */
+    scrollbar-width: none;     /* Esconde no Firefox */
+}
+}
