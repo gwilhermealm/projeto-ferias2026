@@ -22,6 +22,34 @@
           
     </header>
     <main>
+        <!--icone de carrinho-->
+        <div id="cart-icon" onclick="abrirFecharCarrinho()">
+    <span>🛒</span>
+    <span id="cart-count">0</span>
+</div>
+
+<aside id="carrinho-lateral" class="cart-close">
+    <div class="cart-header">
+        <h2>Seu Carrinho</h2>
+        <button onclick="abrirFecharCarrinho()">X</button>
+    </div>
+    
+    <div id="carrinho-itens">
+        <p style="text-align: center; padding: 20px;">Carrinho vazio</p>
+    </div>
+
+    <div class="cart-footer">
+        <div class="total">
+            <span>Total:</span>
+            <span id="cart-total">R$ 0,00</span>
+        </div>
+        <button class="btn-finalizar">Finalizar Pedido</button>
+       
+    </div>
+</aside>
+
+
+
         <section id="hamburgers" class="conteudo">
             <h2>hamburgers</h2>
             <article>
@@ -32,6 +60,7 @@
                     <h3>hamburger simples</h3>
                     <p>descrição: pão, carne, queijo, alface, tomate</p>
                     <p>preço: R$15,00</p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('hamburger simples', 15.00)">Adicionar</button>
                 </div>
                
             </article>
@@ -46,6 +75,7 @@
                     <h3>Batata frita tradicional</h3>
                     <p>descrição: batata frita sal e pimenta </p>
                     <p>preço: R$12,00</p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('batata frita tradicional', 12.00)">Adicionar</button>
                 </div>
                
             </article>
@@ -60,6 +90,8 @@
                     <h3>pizza calabresa </h3>
                     <p>descrição: calbresa , queijo , molho de tomate e cebola</p>
                     <p>preço: R$23,00</p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('pizza calabresa', 23.00)">Adicionar</button>
+
                 </div>
                
             </article>
@@ -74,6 +106,7 @@
                     <h3>suco de laranja</h3>
                     <p>descrição: suco de laranja natural</p>
                     <p>preço: R$9,00</p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('suco de laranja', 9.00)">Adicionar</button>
                 </div>
                
             </article>
@@ -88,6 +121,7 @@
                     <h3>pastel tradicional</h3>
                     <p>descrição: pastel de carne com queijo</p>
                     <p>preço: R$9,00</p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('pastel tradicional', 9.00)">Adicionar</button>
                 </div>
                
             </article>

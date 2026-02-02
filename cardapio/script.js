@@ -1,3 +1,55 @@
+ cardcout=document.getElementById('cart-count')
+
+ let carrinho=[ ]
+ 
+//atualizar interface do carrinho
+function atualizarInterfaceCarrinho() {
+    const containerItens = document.getElementById('carrinho-itens');
+    const totalElemento = document.getElementById('cart-total');
+    
+    
+    containerItens.innerHTML = '';
+    
+    let valorTotal = 0;
+
+  
+    carrinho.forEach((item, index) => {
+        valorTotal += item.preco * item.quantidade;
+
+        // Cria o HTML para cada item
+        containerItens.innerHTML += `
+            <div class="item-carrinho" style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">
+                <div>
+                    <p><strong>${item.nome}</strong></p>
+                    <p><small>R$ ${item.preco.toFixed(2)} x ${item.quantidade}</small></p>
+                </div>
+                <button onclick="removerDoCarrinho(${index})" style="width: auto; color: red; margin: 0; background: none; cursor: pointer;">Remover</button>
+            </div>
+        `
+    });
+
+ 
+    totalElemento.innerText = `R$ ${valorTotal.toFixed(2)}`;
+
+    // Se o carrinho ficar vazio, volta o texto informativo
+    if (carrinho==[] ) {
+        containerItens.innerHTML = '<p style="text-align: center; padding: 20px;">Carrinho vazio</p>';
+    }
+}
+//funçao para remover o iten do carrinho
+function removerDoCarrinho(index) {
+    
+    carrinho.splice(index, 1);
+
+  
+    const totalItens = carrinho.reduce((acumulador, item) => acumulador + item.quantidade, 0);
+    cardcout.innerText = totalItens;
+
+ 
+    atualizarInterfaceCarrinho();
+}
+
+ 
  function mostrarSecao(idDaSecao) {
  
   const secoes = document.querySelectorAll('.conteudo');
@@ -9,3 +61,29 @@
   const secaoParaMostrar = document.getElementById(idDaSecao);
   secaoParaMostrar.style.display = 'block';
  }
+
+
+function adicionarAoCarrinho(nomeItem, precoItem) {
+ const novoItem = {
+        nome: nomeItem,
+        preco: precoItem,
+        quantidade: 1 
+    };
+
+    // usamos o método .push() para guardar o objeto no array
+    carrinho.push(novoItem);
+   
+   const totalItens = carrinho.reduce((acumulador, item) => acumulador + item.quantidade, 0);
+    cardcout.innerText = totalItens;
+    console.log(carrinho)
+
+   //chamar funçao para preencher carrinho
+   atualizarInterfaceCarrinho()
+}
+function abrirFecharCarrinho(){
+    const carLateral=document.getElementById('carrinho-lateral')
+     //alterar classe do carinho lateral
+     carLateral.classList.toggle('cart-open')
+     carLateral.classList.toggle('cart-close')
+
+}

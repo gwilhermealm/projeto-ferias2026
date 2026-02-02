@@ -134,4 +134,121 @@ article p:last-child {
     height: 200px;
   }
 /*
+/* Botão Adicionar dentro do card */
+.btn-add {
+    background-color: var(--accent-color);
+    color: var(--text-dark);
+    font-weight: bold;
+    border-radius: 8px;
+    width: auto; /* Sobrescreve os 10rem globais */
+    padding: 8px 15px;
+    margin-left: 0;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-add:hover {
+    background-color: #e6a700;
+}
+
+/* Ícone Flutuante */
+#cart-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+}
+
+#cart-count {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--accent-color);
+    color: var(--text-dark);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 7px;
+    border-radius: 50%;
+}
+
+/* Painel Lateral do Carrinho */
+#carrinho-lateral {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+}
+
+.cart-close {
+    transform: translateX(100%);
+}
+
+.cart-open {
+    transform: translateX(0);
+}
+
+.cart-header {
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header button {
+    width: auto;
+    color: white;
+    font-size: 20px;
+    margin: 0;
+}
+
+#carrinho-itens {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.cart-footer {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.btn-finalizar {
+    width: 100%;
+    background-color: #2e7d32;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-left: 0;
+}
+
 
