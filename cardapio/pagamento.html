@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="style.css">
+    <style> 
+.conteudo-pagamento {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+.conteudo-pagamento h2 {
+    text-align: center;
+    margin-bottom: 20px;    
+}
+#form-pagamento {   
+    display: flex;
+    flex-direction: column;
+}
+#form-pagamento label {         
+    margin-bottom: 5px; 
+    font-weight: bold;
+}
+#form-pagamento input, #form-pagamento select {     
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#form-pagamento button {
+    padding: 10px;  
+    font-size: 16px;
+    margin: auto;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+      <header>
+        <h1>Pagamento</h1>
+          <nav class="carousel-nav">
+            <button type="button" class="voltar-cardapio" onclick="location.href='./index.html'"> &lt;&lt;Cardapio</button>
+            
+          </nav>
+          
+    </header>
+    <main>
+        <section id="pagamento" class="conteudo-pagamento">
+            <div id="meu-pedido">
+                <h2>Meu Pedido</h2>
+                
+                <div class="total-pedido">
+                    <strong>Total:</strong> <span id="total-pedido"></span>
+                </div>
+
+            </div>
+            <h2>Finalizar Pedido</h2>
+
+            <form id="form-pagamento">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="endereco">Endereço de Entrega:</label>
+                <input type="text" id="endereco" name="endereco" required>
+
+                 <label for="bairro">Bairro:</label>
+                <select id="bairro" name="bairro" required>
+                    <option value="">Selecione</option>
+                    <option value="centro">bairro1</option>
+                    <option value="jardim">bairro2</option>
+                    <option value="vila">bairro3</option>
+                </select>
+
+                <label for="pagamento">Método de Pagamento:</label>
+                <select id="pagamento" name="pagamento" required>
+                    <option value="">Selecione</option>
+                    <option value="cartao">Cartão</option>
+                    <option value="dinheiro">Dinheiro</option>
+                    <option value="pix">PIX</option>
+                </select>
+
+                <button type="submit">Confirmar Pedido</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

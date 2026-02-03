@@ -1,5 +1,7 @@
- cardcout=document.getElementById('cart-count')
+ let cardcout=document.getElementById('cart-count')
+ let totalcarrinho
 
+ 
  let carrinho=[ ]
  
 //atualizar interface do carrinho
@@ -30,6 +32,7 @@ function atualizarInterfaceCarrinho() {
 
  
     totalElemento.innerText = `R$ ${valorTotal.toFixed(2)}`;
+    totalcarrinho=valorTotal
 
     // Se o carrinho ficar vazio, volta o texto informativo
     if (carrinho==[] ) {
@@ -75,7 +78,9 @@ function adicionarAoCarrinho(nomeItem, precoItem) {
    
    const totalItens = carrinho.reduce((acumulador, item) => acumulador + item.quantidade, 0);
     cardcout.innerText = totalItens;
-    console.log(carrinho)
+    totalcarrinho=totalItens
+    console.log(totalcarrinho)
+    
 
    //chamar funçao para preencher carrinho
    atualizarInterfaceCarrinho()
@@ -87,3 +92,9 @@ function abrirFecharCarrinho(){
      carLateral.classList.toggle('cart-close')
 
 }
+
+let pagTotal=document.getElementById('t-pedido')
+
+pagTotal.innerHTML=`${totalcarrinho}`
+
+ //parte pagamento
