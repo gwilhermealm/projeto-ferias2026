@@ -1,5 +1,6 @@
  let cardcout=document.getElementById('cart-count')
- let totalcarrinho
+ const btnFinalizar=document.getElementById('btn-finalizar')
+
 
  
  let carrinho=[ ]
@@ -29,15 +30,17 @@ function atualizarInterfaceCarrinho() {
             </div>
         `
     });
-
- 
+   
+    
     totalElemento.innerText = `R$ ${valorTotal.toFixed(2)}`;
-    totalcarrinho=valorTotal
+    localStorage.setItem('totalpag', String(valorTotal))
+    
 
     // Se o carrinho ficar vazio, volta o texto informativo
     if (carrinho==[] ) {
         containerItens.innerHTML = '<p style="text-align: center; padding: 20px;">Carrinho vazio</p>';
     }
+    
 }
 //funçao para remover o iten do carrinho
 function removerDoCarrinho(index) {
@@ -78,8 +81,8 @@ function adicionarAoCarrinho(nomeItem, precoItem) {
    
    const totalItens = carrinho.reduce((acumulador, item) => acumulador + item.quantidade, 0);
     cardcout.innerText = totalItens;
-    totalcarrinho=totalItens
-    console.log(totalcarrinho)
+   
+   
     
 
    //chamar funçao para preencher carrinho
@@ -93,8 +96,13 @@ function abrirFecharCarrinho(){
 
 }
 
-let pagTotal=document.getElementById('t-pedido')
 
-pagTotal.innerHTML=`${totalcarrinho}`
+//finalizar pedido ir para o pagamento
+
 
  //parte pagamento
+ document.addEventListener('DOMContentLoaded', () => {
+  const total = localStorage.getItem('totalpag');
+  const tpedido = document.getElementById('t-pedido');
+  if (tpedido && total !== null) tpedido.innerText = `R$ ${Number(total).toFixed(2)}`;
+});
