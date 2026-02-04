@@ -31,7 +31,8 @@
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-#form-pagamento button {
+ .btn-confirmar {
+    display: flex;
     padding: 10px;  
     font-size: 16px;
     margin: auto;
@@ -64,6 +65,7 @@
                 
                 <div class="total-pedido">
                     <strong>Total:</strong> <span id="t-pedido"></span>
+                    <p>(taxa de entrega)<span id="tx-entrega">0,00</span></p>
                 </div>
 
             </div>
@@ -79,21 +81,23 @@
                  <label for="bairro">Bairro:</label>
                 <select id="bairro" name="bairro" required>
                     <option value="">Selecione</option>
-                    <option value="centro">bairro1</option>
-                    <option value="jardim">bairro2</option>
-                    <option value="vila">bairro3</option>
+                    <option value="bairro1">bairro1</option>
+                    <option value="bairro2">bairro2</option>
+                    <option value="bairro3">bairro3</option>
                 </select>
 
-                <label for="pagamento">Método de Pagamento:</label>
-                <select id="pagamento" name="pagamento" required>
+                <label for="metodo-pagamento">Método de Pagamento:</label>
+                <select id="metodo-pagamento" name="pagamento" required>
                     <option value="">Selecione</option>
                     <option value="cartao">Cartão</option>
                     <option value="dinheiro">Dinheiro</option>
                     <option value="pix">PIX</option>
                 </select>
+                <label for="mensagem">Mensagem *(se dinheiro:precisa de troco?)*</label>
+                <input type="text" name="mensagem" id="mensagem" placeholder="alguma alteraçao no itens do pedido?">
 
-                <button type="submit">Confirmar Pedido</button>
             </form>
+            <button class="btn-confirmar"  onclick="confirmarPedido()">Confirmar Pedido</button>
         </section>
     </main>
     <script src="script.js"></script>
