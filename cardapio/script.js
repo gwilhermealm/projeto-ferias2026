@@ -1,3 +1,64 @@
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBPM9a1TOTiIblsvgMFInpMVUvvA3BNAuc",
+  authDomain: "bc-cardapio.firebaseapp.com",
+  databaseURL: "https://bc-cardapio-default-rtdb.firebaseio.com",
+  projectId: "bc-cardapio",
+  storageBucket: "bc-cardapio.firebasestorage.app",
+  messagingSenderId: "510752314447",
+  appId: "1:510752314447:web:9e7f43305130d9d834463a",
+  measurementId: "G-KMHRFWF9JK"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+
+// Esta função fica "vigiando" o Firebase
+onValue(ref(db, 'cardapio/'), (snapshot) => {
+    const dados = snapshot.val();
+    if (dados) {
+        // 1. Atualiza os preços visuais (Certifique-se que os IDs existem no HTML)
+        if(dados.hamburguer) {
+            const elBurguer = document.getElementById('val-hamburguer');
+            if(elBurguer) elBurguer.innerText = dados.hamburguer;
+            
+            // 2. Atualiza o botão de Adicionar com o novo preço do Firebase
+            const btnBurguer = document.querySelector("#hamburgers .btn-add");
+            if(btnBurguer) {
+                btnBurguer.onclick = () => window.adicionarAoCarrinho('hambúrguer simples', parseFloat(dados.hamburguer));
+            }
+        }
+
+        if(dados.pizza) {
+            const elPizza = document.getElementById('val-pizza');
+            if(elPizza) elPizza.innerText = dados.pizza;
+
+            const btnPizza = document.querySelector("#pizzas .btn-add");
+            if(btnPizza) {
+                btnPizza.onclick = () => window.adicionarAoCarrinho('pizza calabresa', parseFloat(dados.pizza));
+            }
+        }
+        if(dados.pastel) {
+            const elPastel = document.getElementById('val-pastel');
+            if(elPastel) elPastel.innerText = dados.pastel;
+    }
+    if(dados.batata) {
+            const elBatata = document.getElementById('val-batata');
+            if(elBatata) elBatata.innerText = dados.batata; 
+    }
+}});
+
+
+
+
+
+
+
+
+ 
  let cardcout=document.getElementById('cart-count')
  const btnFinalizar=document.getElementById('btn-finalizar')
 
@@ -6,7 +67,7 @@
  let carrinho=[ ]
  
 //atualizar interface do carrinho
-function atualizarInterfaceCarrinho() {
+window.atualizarInterfaceCarrinho = function atualizarInterfaceCarrinho() {
     const containerItens = document.getElementById('carrinho-itens');
     const totalElemento = document.getElementById('cart-total');
     
@@ -44,7 +105,7 @@ function atualizarInterfaceCarrinho() {
     
 }
 //funçao para remover o iten do carrinho
-function removerDoCarrinho(index) {
+window.removerDoCarrinho = function removerDoCarrinho(index) {
     
     carrinho.splice(index, 1);
 
@@ -57,7 +118,7 @@ function removerDoCarrinho(index) {
 }
 
  
- function mostrarSecao(idDaSecao) {
+ window.mostrarSecao = function mostrarSecao(idDaSecao) {
  
   const secoes = document.querySelectorAll('.conteudo');
 
@@ -70,7 +131,7 @@ function removerDoCarrinho(index) {
  }
 
 
-function adicionarAoCarrinho(nomeItem, precoItem) {
+window.adicionarAoCarrinho = function adicionarAoCarrinho(nomeItem, precoItem) {
  const novoItem = {
         nome: nomeItem,
         preco: precoItem,
@@ -94,7 +155,7 @@ function adicionarAoCarrinho(nomeItem, precoItem) {
    //chamar funçao para preencher carrinho
    atualizarInterfaceCarrinho()
 }
-function abrirFecharCarrinho(){
+window.abrirFecharCarrinho = function abrirFecharCarrinho(){
     const carLateral=document.getElementById('carrinho-lateral')
      //alterar classe do carinho lateral
      carLateral.classList.toggle('cart-open')
@@ -153,7 +214,7 @@ function abrirFecharCarrinho(){
 
 
 //confirmar pedido
-function confirmarPedido(){
+window.confirmarPedido = function confirmarPedido(){
     
     // usa optional chaining para evitar exceção caso o elemento não exista
     let formaDePagamento = document.getElementById('metodo-pagamento')?.value || '';
@@ -171,7 +232,7 @@ function confirmarPedido(){
 }
 
 //enviar pedido por whatsapp
-function enviarPedido() {
+window.enviarPedido = function enviarPedido() {
     const telefone = "5585997897202" //telefone que vai ser enviado pedido
     let pedidosalvo=localStorage.getItem('pedido')
     let valorpedido=localStorage.getItem('totalpag')
@@ -199,3 +260,5 @@ const urlWaMe = `https://wa.me/${telefone}?text=${encodeURIComponent(texto)}`;
 window.open(urlWaMe, '_blank');
 localStorage.clear()
 }
+//funçao atuaçizar preços
+

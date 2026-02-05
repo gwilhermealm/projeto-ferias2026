@@ -255,4 +255,6 @@ article p:last-child {
     margin-left: 0;
     padding-left: 0;
 }
-
+img{
+    border-radius: 5px;
+}

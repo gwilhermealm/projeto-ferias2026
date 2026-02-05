@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Atualizar Preços</title>
+    <style>
+        :root {
+            --primary: #e63946;
+            --success: #28a745;
+            --bg: #f4f4f9;
+            --text: #1d3557;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .admin-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 { 
+            color: var(--primary); 
+            text-align: center; 
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group { 
+            margin-bottom: 20px; 
+        }
+
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: bold; 
+            color: var(--text); 
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus { 
+            border-color: var(--primary); 
+            outline: none; 
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--success);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+            margin-top: 10px;
+        }
+
+        button:hover { 
+            background-color: #218838; 
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .footer-info {
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+ <div class="admin-container">
+        <h2>Painel de Preços</h2>
+        
+        <div class="input-group">
+            <label for="p_burguer">Hambúrguer (R$):</label>
+            <input type="number" id="p_burguer" step="0.01" placeholder="Ex: 15.00">
+        </div>
+
+        <div class="input-group">
+            <label for="p_pizza">Pizza (R$):</label>
+            <input type="number" id="p_pizza" step="0.01" placeholder="Ex: 25.00">
+        </div>
+        <div class="input-group">
+            <label for="p_pastel">Pastel Tradicional (R$):</label>
+            <input type="number" id="p_pastel" step="0.01" placeholder="Ex: 10.00">
+        </div>
+
+        <div class="input-group">
+            <label for="p_batata">Batata Frita (R$):</label>
+            <input type="number" id="p_batata" step="0.01" placeholder="Ex: 12.00">
+        </div>
+        
+        <button onclick="salvarPrecos()">Atualizar Cardápio Online</button>
+        
+        <div class="footer-info">
+            Os preços serão atualizados em tempo real para os clientes.
+        </div>
+    </div>
+
+ <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+   const firebaseConfig = {
+  apiKey: "AIzaSyBPM9a1TOTiIblsvgMFInpMVUvvA3BNAuc",
+  authDomain: "bc-cardapio.firebaseapp.com",
+  databaseURL: "https://bc-cardapio-default-rtdb.firebaseio.com",
+  projectId: "bc-cardapio",
+  storageBucket: "bc-cardapio.firebasestorage.app",
+  messagingSenderId: "510752314447",
+  appId: "1:510752314447:web:9e7f43305130d9d834463a",
+  measurementId: "G-KMHRFWF9JK"
+};
+
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+   window.salvarPrecos = function() {
+    const senha = prompt("Senha de acesso:");
+    
+    // Captura os valores e garante que são números
+    const p_burguer = document.getElementById('p_burguer').value;
+    const p_pizza = document.getElementById('p_pizza').value;
+    const p_pastel = document.getElementById('p_pastel').value; 
+    const p_batata = document.getElementById('p_batata').value; 
+
+    const novosPrecos = {
+        hamburguer: parseFloat(p_burguer).toFixed(2),
+        pizza: parseFloat(p_pizza).toFixed(2),
+        pastel: parseFloat(p_pastel).toFixed(2), 
+        batata: parseFloat(p_batata).toFixed(2), 
+        admin_key: senha 
+    };
+
+    console.log("Dados enviados:", novosPrecos); 
+
+    set(ref(db, 'cardapio/'), novosPrecos)
+        .then(() => alert("Preços atualizados no site!"))
+        .catch(err => {
+            console.error("Detalhes do erro:", err);
+            alert("Erro: " + err.message);
+        });
+}
+</script>
+</body>
+</html>
