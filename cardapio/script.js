@@ -1,5 +1,7 @@
  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+let carrinho = JSON.parse(localStorage.getItem('pedido')) || []
+ window.carrinho=carrinho
 
 const firebaseConfig = {
   apiKey: "AIzaSyBPM9a1TOTiIblsvgMFInpMVUvvA3BNAuc",
@@ -15,45 +17,41 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-
+const cardapioRef = ref(db, 'cardapio/');
 // Esta função fica "vigiando" o Firebase
-onValue(ref(db, 'cardapio/'), (snapshot) => {
+// Esta função fica "vigiando" o Firebase
+onValue(cardapioRef, (snapshot) => {
     const dados = snapshot.val();
-    if (dados) {
-        // 1. Atualiza os preços visuais (Certifique-se que os IDs existem no HTML)
-        if(dados.hamburguer) {
-            const elBurguer = document.getElementById('val-hamburguer');
-            if(elBurguer) elBurguer.innerText = dados.hamburguer;
-            
-            // 2. Atualiza o botão de Adicionar com o novo preço do Firebase
-            const btnBurguer = document.querySelector("#hamburgers .btn-add");
-            if(btnBurguer) {
-                btnBurguer.onclick = () => window.adicionarAoCarrinho('hambúrguer simples', parseFloat(dados.hamburguer));
-            }
+    if (!dados) return;
+
+    const categorias = ['hamburgers', 'pizzas', 'pasteis', 'batatas', 'bebidas'];
+
+    categorias.forEach(categoria => {
+        if (dados[categoria]) {
+            Object.keys(dados[categoria]).forEach(id => {
+                const item = dados[categoria][id];
+                const elementoPreco = document.getElementById(`id-${id}`);
+                
+                if (elementoPreco) {
+                    let valorExibir = "";
+
+                    // Se o item for um objeto { preco: "15.00" } ou { hamburguer: "18.00" }
+                    if (typeof item === 'object' && item !== null) {
+                        // Prioriza a chave 'preco', depois 'hamburguer', senão pega o primeiro valor que achar
+                        valorExibir = item.preco || item.hamburguer || Object.values(item)[0];
+                    } else {
+                        // Se for apenas o valor direto "15.00"
+                        valorExibir = item;
+                    }
+
+                    // Garante que o valor seja tratado como número para formatar com 2 casas decimais
+                    const num = parseFloat(valorExibir);
+                    elementoPreco.innerText = !isNaN(num) ? num.toFixed(2) : valorExibir;
+                }
+            });
         }
-
-        if(dados.pizza) {
-            const elPizza = document.getElementById('val-pizza');
-            if(elPizza) elPizza.innerText = dados.pizza;
-
-            const btnPizza = document.querySelector("#pizzas .btn-add");
-            if(btnPizza) {
-                btnPizza.onclick = () => window.adicionarAoCarrinho('pizza calabresa', parseFloat(dados.pizza));
-            }
-        }
-        if(dados.pastel) {
-            const elPastel = document.getElementById('val-pastel');
-            if(elPastel) elPastel.innerText = dados.pastel;
-    }
-    if(dados.batata) {
-            const elBatata = document.getElementById('val-batata');
-            if(elBatata) elBatata.innerText = dados.batata; 
-    }
-}});
-
-
-
-
+    });
+});
 
 
 
@@ -64,60 +62,7 @@ onValue(ref(db, 'cardapio/'), (snapshot) => {
 
 
  
- let carrinho=[ ]
- 
-//atualizar interface do carrinho
-window.atualizarInterfaceCarrinho = function atualizarInterfaceCarrinho() {
-    const containerItens = document.getElementById('carrinho-itens');
-    const totalElemento = document.getElementById('cart-total');
-    
-    
-    containerItens.innerHTML = '';
-    
-    let valorTotal = 0;
-
-  
-    carrinho.forEach((item, index) => {
-        valorTotal += item.preco * item.quantidade;
-
-        // Cria o HTML para cada item
-        containerItens.innerHTML += `
-            <div class="item-carrinho" style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">
-                <div>
-                    <p><strong>${item.nome}</strong></p>
-                    <p><small>R$ ${item.preco.toFixed(2)} x ${item.quantidade}</small></p>
-                </div>
-                <button onclick="removerDoCarrinho(${index})" style="width: auto; color: red; margin: 0; background: none; cursor: pointer;">Remover</button>
-            </div>
-        `
-    });
-   
-    
-    totalElemento.innerText = `R$ ${valorTotal.toFixed(2)}`;
-    localStorage.setItem('totalpag', String(valorTotal))
-    // salva o pedido completo (array de itens) em uma única chave
-    localStorage.setItem('pedido', JSON.stringify(carrinho));
-
-    // Se o carrinho ficar vazio, volta o texto informativo
-    if (carrinho==[] ) {
-        containerItens.innerHTML = '<p style="text-align: center; padding: 20px;">Carrinho vazio</p>';
-    }
-    
-}
-//funçao para remover o iten do carrinho
-window.removerDoCarrinho = function removerDoCarrinho(index) {
-    
-    carrinho.splice(index, 1);
-
-  
-    const totalItens = carrinho.reduce((acumulador, item) => acumulador + item.quantidade, 0);
-    cardcout.innerText = totalItens;
-
- 
-    atualizarInterfaceCarrinho();
-}
-
- 
+//funçao mostrar seçao
  window.mostrarSecao = function mostrarSecao(idDaSecao) {
  
   const secoes = document.querySelectorAll('.conteudo');
@@ -129,32 +74,45 @@ window.removerDoCarrinho = function removerDoCarrinho(index) {
   const secaoParaMostrar = document.getElementById(idDaSecao);
   secaoParaMostrar.style.display = 'block';
  }
+ 
+//atualizar interface do carrinho
+window.adicionarAoCarrinho = function adicionarAoCarrinho(nomeItem, precoItemOriginal, idDoElemento) {
+    const elementoPreco = document.getElementById(idDoElemento);
+    let precoFinal = precoItemOriginal;
 
+    if (elementoPreco) {
+        const textoPreco = elementoPreco.innerText.replace('R$', '').replace(',', '.').trim();
+        const precoNumerico = parseFloat(textoPreco);
+        if (!isNaN(precoNumerico)) {
+            precoFinal = precoNumerico;
+        }
+    }
 
-window.adicionarAoCarrinho = function adicionarAoCarrinho(nomeItem, precoItem) {
- const novoItem = {
+    const novoItem = {
+        idUnique: Date.now() + Math.random(), 
+        idOriginal: idDoElemento,
         nome: nomeItem,
-        preco: precoItem,
+        preco: precoFinal,
         quantidade: 1 
     };
 
-    // se já existe um item igual, apenas incrementa a quantidade
-    const existente = carrinho.find(item => item.nome === nomeItem && item.preco === precoItem);
-    if (existente) {
-        existente.quantidade += 1;
-    } else {
-        carrinho.push(novoItem);
-    }
+    // Adiciona ao array local
+    carrinho.push(novoItem);
     
-   const totalItens = carrinho.reduce((acumulador, item) => acumulador + item.quantidade, 0);
-   if (cardcout) cardcout.innerText = totalItens;
-
-   // salva o pedido atualizado
-   localStorage.setItem('pedido', JSON.stringify(carrinho));
-
-   //chamar funçao para preencher carrinho
-   atualizarInterfaceCarrinho()
+    // Salva no localStorage
+    localStorage.setItem('pedido', JSON.stringify(carrinho));
+    
+    // Atualiza a interface
+    window.atualizarInterfaceCarrinho();
 }
+window.removerDoCarrinho = function(index) {
+    window.carrinho.splice(index, 1);
+    window.atualizarInterfaceCarrinho();
+};
+
+
+
+
 window.abrirFecharCarrinho = function abrirFecharCarrinho(){
     const carLateral=document.getElementById('carrinho-lateral')
      //alterar classe do carinho lateral
@@ -162,7 +120,44 @@ window.abrirFecharCarrinho = function abrirFecharCarrinho(){
      carLateral.classList.toggle('cart-close')
 
 }
+window.atualizarInterfaceCarrinho = function atualizarInterfaceCarrinho() {
+    const containerItens = document.getElementById('carrinho-itens');
+    const totalElemento = document.getElementById('cart-total');
+    const cartCount = document.getElementById('cart-count'); // Elemento do contador
+    
+    containerItens.innerHTML = '';
+    let valorTotal = 0;
+    let totalItens = 0;
 
+    if (carrinho.length === 0) {
+        containerItens.innerHTML = '<p style="text-align: center; padding: 20px;">Carrinho vazio</p>';
+        totalElemento.innerText = 'R$ 0,00';
+        if (cartCount) cartCount.innerText = '0';
+        localStorage.setItem('totalpag', '0');
+        localStorage.setItem('pedido', JSON.stringify([]));
+        return;
+    }
+
+    carrinho.forEach((item, index) => {
+        valorTotal += item.preco * item.quantidade;
+        totalItens += item.quantidade;
+
+        containerItens.innerHTML += `
+            <div class="item-carrinho" style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">
+                <div>
+                    <p><strong>${item.nome}</strong></p>
+                    <p><small>R$ ${item.preco.toFixed(2)}</small></p>
+                </div>
+                <button onclick="removerDoCarrinho(${index})" style="width: auto; color: red; margin: 0; background: none; cursor: pointer;">Remover</button>
+            </div>
+        `;
+    });
+    
+    totalElemento.innerText = `R$ ${valorTotal.toFixed(2)}`;
+    if (cartCount) cartCount.innerText = totalItens; // Atualiza o número no ícone 🛒
+    localStorage.setItem('totalpag', String(valorTotal.toFixed(2)));
+    localStorage.setItem('pedido', JSON.stringify(carrinho));
+}
 
 //finalizar pedido ir para o pagamento
 
@@ -262,3 +257,4 @@ localStorage.clear()
 }
 //funçao atuaçizar preços
 
+window.atualizarInterfaceCarrinho ()

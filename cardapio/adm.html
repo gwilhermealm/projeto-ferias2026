@@ -5,169 +5,289 @@
     <title>Admin - Atualizar Preços</title>
     <style>
         :root {
-            --primary: #e63946;
-            --success: #28a745;
-            --bg: #f4f4f9;
-            --text: #1d3557;
-        }
+    --primary: #e63946;
+    --success: #28a745;
+    --bg: #f4f4f9;
+    --text: #1d3557;
+    --white: #ffffff;
+    --border: #ddd;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px; /* Adicionado para não colar nas bordas em telas pequenas */
+}
 
-        .admin-container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 400px;
-        }
+.admin-container {
+    background: var(--white);
+    padding: 40px; /* Aumentado para dar mais respiro aos elementos */
+    border-radius: 16px; /* Bordas um pouco mais arredondadas para um ar moderno */
+    box-shadow: 0 10px 25px var(--shadow); /* Sombra mais suave e profunda */
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+}
+#secao-painel{
+    display: none; /* Inicialmente escondido até o login ser bem-sucedido */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
 
-        h2 { 
-            color: var(--primary); 
-            text-align: center; 
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+/* Espaçamento entre as seções de Login e Painel */
+.admin-login {
+    width: 100%;
+    margin-bottom: 30px;
+    margin-top: 100px;
 
-        .input-group { 
-            margin-bottom: 20px; 
-        }
+}
 
-        label { 
-            display: block; 
-            margin-bottom: 8px; 
-            font-weight: bold; 
-            color: var(--text); 
-        }
+h2 { 
+    color: var(--primary); 
+    text-align: center; 
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 1.4rem;
+}
 
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
+.input-group { 
+    margin-bottom: 25px; 
+}
 
-        input:focus { 
-            border-color: var(--primary); 
-            outline: none; 
-        }
+label { 
+    display: block; 
+    margin-bottom: 10px; 
+    font-weight: 600; /* Peso médio para melhor leitura */
+    color: var(--text); 
+}
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
 
-        button {
-            width: 100%;
-            padding: 15px;
-            background-color: var(--success);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.1s;
-            margin-top: 10px;
-        }
+input {
+    width: 100%;
+    padding: 14px;
+    /* Adicionamos espaço na direita para o texto não ficar por baixo do ícone */
+    padding-right: 45px; 
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: block;
+}
+input:focus { 
+    border-color: var(--primary); 
+    box-shadow: 0 0 8px rgba(230, 57, 70, 0.2); /* Glow suave no foco */
+    outline: none; 
+}
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.2rem;
+    user-select: none; /* Evita selecionar o emoji como se fosse texto */
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        button:hover { 
-            background-color: #218838; 
-        }
+.toggle-password:hover {
+    opacity: 1;
+}
 
-        button:active {
-            transform: scale(0.98);
-        }
+button {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--success);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);
+}
 
-        .footer-info {
-            text-align: center;
-            font-size: 12px;
-            color: #888;
-            margin-top: 20px;
-        }
+button:hover { 
+    background-color: #218838;
+    transform: translateY(-2px); /* Efeito de levante no hover */
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+}
+
+button:active {
+    transform: scale(0.98); /* Mantive o seu efeito de clique que é excelente */
+}
+
+/* Estilo específico para o botão de login caso queira cor diferente */
+.btn-login {
+    background-color: var(--primary);
+    box-shadow: 0 4px 6px rgba(230, 57, 70, 0.2);
+}
+
+.btn-login:hover {
+    background-color: #c82333;
+    box-shadow: 0 6px 12px rgba(230, 57, 70, 0.3);
+}
+
+.footer-info {
+   text-align: center;
+    font-size: 13px;
+    color: #777;
+    margin-top: 25px;
+    line-height: 1.5;
+}
     </style>
 </head>
 <body>
- <div class="admin-container">
+  <section class="section-login" id="section-login">
+    <div class="admin-login">
+    <div >
+        <h2>Acesso Admin</h2>
+       <div class="input-group">
+    <label for="senha-input">Senha do Firebase:</label>
+    
+    <div class="input-wrapper" style="position: relative;">
+        <input type="password" id="senha-input" placeholder="Digite a senha">
+        
+        <span id="toggle-password" onclick="alternarVisualizacao()" 
+              style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; opacity: 0.6;">
+            👁️
+        </span>
+    </div>
+    </div>
+        <button id="btn-login" onclick="fazerLogin()" style="background-color: var(--primary);">Entrar</button>
+    </div>
+
+  </section>
+    <section id="secao-painel" >
+        <div class="admin-container">
         <h2>Painel de Preços</h2>
-        
-        <div class="input-group">
-            <label for="p_burguer">Hambúrguer (R$):</label>
-            <input type="number" id="p_burguer" step="0.01" placeholder="Ex: 15.00">
-        </div>
 
-        <div class="input-group">
-            <label for="p_pizza">Pizza (R$):</label>
-            <input type="number" id="p_pizza" step="0.01" placeholder="Ex: 25.00">
-        </div>
-        <div class="input-group">
-            <label for="p_pastel">Pastel Tradicional (R$):</label>
-            <input type="number" id="p_pastel" step="0.01" placeholder="Ex: 10.00">
-        </div>
-
-        <div class="input-group">
-            <label for="p_batata">Batata Frita (R$):</label>
-            <input type="number" id="p_batata" step="0.01" placeholder="Ex: 12.00">
-        </div>
-        
         <button onclick="salvarPrecos()">Atualizar Cardápio Online</button>
         
         <div class="footer-info">
             Os preços serão atualizados em tempo real para os clientes.
         </div>
-    </div>
+ </div>
+
+    </section>
+ 
 
  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-   const firebaseConfig = {
-  apiKey: "AIzaSyBPM9a1TOTiIblsvgMFInpMVUvvA3BNAuc",
-  authDomain: "bc-cardapio.firebaseapp.com",
-  databaseURL: "https://bc-cardapio-default-rtdb.firebaseio.com",
-  projectId: "bc-cardapio",
-  storageBucket: "bc-cardapio.firebasestorage.app",
-  messagingSenderId: "510752314447",
-  appId: "1:510752314447:web:9e7f43305130d9d834463a",
-  measurementId: "G-KMHRFWF9JK"
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBPM9a1TOTiIblsvgMFInpMVUvvA3BNAuc",
+    authDomain: "bc-cardapio.firebaseapp.com",
+    databaseURL: "https://bc-cardapio-default-rtdb.firebaseio.com",
+    projectId: "bc-cardapio",
+    storageBucket: "bc-cardapio.firebasestorage.app",
+    messagingSenderId: "510752314447",
+    appId: "1:510752314447:web:9e7f43305130d9d834463a"
 };
 
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-
-   window.salvarPrecos = function() {
-    const senha = prompt("Senha de acesso:");
+// Função de Login
+window.fazerLogin = async function() {
+    const campoSenha = document.getElementById('senha-input');
+    const senhaDigitada = campoSenha.value.trim(); // .trim() remove espaços acidentais
     
-    // Captura os valores e garante que são números
-    const p_burguer = document.getElementById('p_burguer').value;
-    const p_pizza = document.getElementById('p_pizza').value;
-    const p_pastel = document.getElementById('p_pastel').value; 
-    const p_batata = document.getElementById('p_batata').value; 
+    // Seleciona o botão dentro da section correta
+    const btn = document.querySelector('#section-login button');
 
-    const novosPrecos = {
-        hamburguer: parseFloat(p_burguer).toFixed(2),
-        pizza: parseFloat(p_pizza).toFixed(2),
-        pastel: parseFloat(p_pastel).toFixed(2), 
-        batata: parseFloat(p_batata).toFixed(2), 
-        admin_key: senha 
-    };
+    if (!senhaDigitada) return alert("Por favor, digite a senha.");
 
-    console.log("Dados enviados:", novosPrecos); 
+    btn.innerText = "Verificando...";
+    btn.disabled = true;
+    
+    try {
+        const senhaRef = ref(db, 'cardapio/admin_key');
+        const snapshot = await get(senhaRef);
+        
+        if (!snapshot.exists()) {
+            throw new Error("A chave 'admin_key' não foi encontrada no banco.");
+        }
 
-    set(ref(db, 'cardapio/'), novosPrecos)
-        .then(() => alert("Preços atualizados no site!"))
-        .catch(err => {
-            console.error("Detalhes do erro:", err);
-            alert("Erro: " + err.message);
-        });
+        const senhaDoBanco = snapshot.val();
+
+        // LOG DE SEGURANÇA (Verifique isso no F12 do navegador)
+        console.log("Digitado:", senhaDigitada);
+        console.log("No Banco:", senhaDoBanco);
+
+        // Compara convertendo ambos para string e limpando espaços
+        if (String(senhaDigitada) === String(senhaDoBanco).trim()) {
+            // CORREÇÃO DOS IDS: Aqui deve ser 'section-login' (igual ao seu HTML)
+            document.getElementById('section-login').style.display = 'none';
+            document.getElementById('secao-painel').style.display = 'flex';
+        } else {
+            alert("Senha incorreta! Verifique maiúsculas e minúsculas.");
+            btn.innerText = "Entrar";
+            btn.disabled = false;
+        }
+    } catch (error) {
+        console.error("Erro detalhado:", error);
+        alert("Erro ao conectar: " + error.message);
+        btn.innerText = "Entrar";
+        btn.disabled = false;
+    }
+}
+
+// Sua função de salvar preços (agora sem pedir senha novamente)
+window.salvarPrecos = async function() {
+    let categoriaPrompt = prompt("Categoria (1-Hamb, 2-Pizza, 3-Bebida, 4-Pastel, 5-Batata):");
+    const categoriasMap = { '1': 'hamburgers', '2': 'pizzas', '3': 'bebidas', '4': 'pasteis', '5': 'batatas' };
+    
+    let categoria = categoriasMap[categoriaPrompt];
+    if (!categoria) return alert("Categoria inválida!");
+
+    let idProduto = prompt("Digite o ID do item:");
+    let novoPreco = prompt("Digite o novo preço:");
+
+   if (idProduto && novoPreco) {
+    try {
+        // Acessamos o caminho direto até a chave 'preco'
+        // Isso garante que a estrutura seja sempre ID -> preco -> valor
+        await set(ref(db, `cardapio/${categoria}/${idProduto}/preco`), parseFloat(novoPreco).toFixed(2));
+        
+        alert("Preço atualizado com sucesso!");
+    } catch (err) {
+        alert("Erro ao salvar: " + err.message);
+    }
+}
+// Função para alternar a visualização da senha
+
+}
+window.alternarVisualizacao = function() {
+    const senhaInput = document.getElementById('senha-input');
+    const toggleIcon = document.getElementById('toggle-password');
+    
+    if (senhaInput.type === 'password') {
+        senhaInput.type = 'text';
+        toggleIcon.innerText = '🙈'; // Muda o ícone para indicar "esconder"
+    } else {
+        senhaInput.type = 'password';
+        toggleIcon.innerText = '👁️'; // Volta para o ícone de "ver"
+    }
 }
 </script>
 </body>

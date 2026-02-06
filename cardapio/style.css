@@ -22,7 +22,7 @@
 header{
     height: 250px;
     background-color: var(--primary-color) ;
-    position: sticky;
+   
 }
 header > h1{
    margin-bottom: 150px;
@@ -33,15 +33,35 @@ header > h1{
 
 }
 
-nav{
-    background-color: var(--accent-color);
+
+.carousel-nav{
+   background-color: var(--accent-color);
     display: flex;
     overflow-x: auto;
     margin-bottom: 0;
+    height: 50px;
+    
+
+    
+    /* Configuração para fixar */
+    position: -webkit-sticky; /* Suporte para Safari */
+    position: sticky;         /* O segredo está aqui */
+    top: 0;                   /* Onde ele vai grudar */
+    z-index: 1001;            /* Maior que o do ícone do carrinho se necessário */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: destaque ao grudar */
     
    
 
 }
+nav > button{
+    cursor: pointer;
+     transition: 0.5s;
+}
+nav > button:hover{
+    border-bottom: solid var(--primary-color) ;
+    
+}
+
 button{
     width: 10rem;
     margin-left: 2rem;
@@ -52,8 +72,9 @@ button{
 /* Container principal da seção */
 .conteudo {
   max-width: 1000px;
-  margin: 0 auto;
+  margin:  auto;
   padding: 40px 20px;
+  gap: 20px;
   font-family: sans-serif;
 }
 
@@ -69,14 +90,30 @@ button{
 /* O card do hambúrguer */
  article {
   display: flex;
+  flex-direction: column; /* Alinha os itens verticalmente */
   align-items: center;
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Garante que a imagem respeite o arredondamento */
+  overflow: hidden;
   transition: transform 0.3s ease;
   margin-bottom: 20px;
+  text-align: center; /* Centraliza o texto se desejar */
+  gap: 100px;
 }
+
+/* Ajuste na largura da imagem para ocupar 100% do card */
+article div:first-child {
+  flex: 0 0 auto; 
+  width: auto; /* Faz a imagem ocupar toda a largura do card */
+  height: 200px;
+  padding: auto;
+  margin-bottom: auto;
+}
+div{
+    margin-top: 0;
+}
+
 
 /* Efeito ao passar o mouse */
  article:hover {
@@ -85,15 +122,17 @@ button{
 
 /* Área da imagem */
  article div:first-child {
-  flex: 0 0 200px; /* Largura fixa para a imagem */
+  flex: 0 0 100px; /* Largura fixa para a imagem */
   height: 150px;
+  margin-top: 50px;
   background-color: #eee; /* Cor de fundo caso a imagem falhe */
 }
 
 article img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
+  object-fit: cover;
+                     /* Faz a imagem preencher o espaço sem distorcer */
 }
 
 /* Área do texto */
@@ -257,4 +296,47 @@ article p:last-child {
 }
 img{
     border-radius: 5px;
+}
+
+
+
+
+/*  footer */
+footer {
+    background-color: var(--text-dark); /* Azul escuro que você já usa */
+    color: var(--text-light);
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--accent-color); /* Amarelo para destaque */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color); /* Vermelho ao passar o mouse */
+}
+
+.copyright {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 10px;
 }
