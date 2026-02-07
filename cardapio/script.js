@@ -24,7 +24,7 @@ onValue(cardapioRef, (snapshot) => {
     const dados = snapshot.val();
     if (!dados) return;
 
-    const categorias = ['hamburgers', 'pizzas', 'pasteis', 'batatas', 'bebidas'];
+    const categorias = ['hamburgers', 'arabe', 'batatas', 'bebidas'];
 
     categorias.forEach(categoria => {
         if (dados[categoria]) {
@@ -257,4 +257,3 @@ localStorage.clear()
 }
 //funçao atuaçizar preços
 
-window.atualizarInterfaceCarrinho ()

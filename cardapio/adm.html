@@ -254,8 +254,8 @@ window.fazerLogin = async function() {
 
 // Sua função de salvar preços (agora sem pedir senha novamente)
 window.salvarPrecos = async function() {
-    let categoriaPrompt = prompt("Categoria (1-Hamb, 2-Pizza, 3-Bebida, 4-Pastel, 5-Batata):");
-    const categoriasMap = { '1': 'hamburgers', '2': 'pizzas', '3': 'bebidas', '4': 'pasteis', '5': 'batatas' };
+    let categoriaPrompt = prompt("Categoria (1-Hamb, 2-Pão Árabe, 3-Bebida, 5-Batata):");
+    const categoriasMap = { '1': 'hamburgers', '2': 'arabe', '3': 'bebidas', '5': 'batatas' };
     
     let categoria = categoriasMap[categoriaPrompt];
     if (!categoria) return alert("Categoria inválida!");

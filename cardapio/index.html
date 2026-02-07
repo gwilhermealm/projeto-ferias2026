@@ -14,8 +14,7 @@
     </header>
     <nav class="carousel-nav">
             <button href="#hamburgers" onclick="mostrarSecao('hamburgers')">hamburgers</button>
-            <button href="#pizzas" onclick="mostrarSecao('pizzas')">pizzas</button>
-            <button href="#pasteis" onclick="mostrarSecao('pasteis')">pasteis</button>
+            <button id="nav-arabe" href="#arabe" onclick="mostrarSecao('arabe')">Pão árabe</button>
             <button href="#batatas" onclick="mostrarSecao('batatas')">batatas</button>
             <button href="#bebidas" onclick="mostrarSecao('bebidas')">bebidas</button>
             <button href="#sobremesas" onclick="mostrarSecao('sobremesas')">sobremesas</button>
@@ -50,68 +49,77 @@
 </aside>
 <!--seçao hamburgues-->
         <section id="hamburgers" class="conteudo">
-            <h2>hamburgers</h2>
+            <h2>hamburgers artesanais</h2>
             <article>
-                
+                                
                 <div>
-                <div style="margin-top: 0%;">
-                    <img src="imagens/hamburguer.jpg" alt="hamburger simples">
-                </div>
+                    <div class="img-container">
+                        <img src="imagens/hamburguer.jpg" alt="hamburger simples">
+                    </div>
 
-                    <h3>hamburger simples</h3>
-                    <p>descrição: pão, carne, queijo, alface, tomate</p>
-                    <p>preço:R$ <span id="id-10" style="color: green;">15,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('hamburger simples', 15.00, 'id-10')">Adicionar</button>
-
+                    <h3>Classico artesanal</h3>
+                    <p><strong>descrição:</strong>Carne artesanal suculenta, queijo, alface e tomate. </p>
+                    <p>preço:R$ <span id="id-1" style="color: green;">15,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Classico artesanal', 15.00, 'id-1')">Adicionar</button>
                 </div>
-                
 
                 <div>
-                <div >
+                <div class="img-container">
                     <img src="imagens/hamburguer.jpg" alt="hamburger simples">
                 </div>
                 
                 
-                    <h3>hamburger simples</h3>
-                    <p>descrição: pão, carne, queijo, alface, tomate</p>
-                    <p>preço:R$ <span id="id-11" style="color: green;">15,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('hamburger simples', 15.00, 'id-11')">Adicionar</button>
+                    <h3> Bacon Cheddar</h3>
+                    <p><strong>descrição:</strong>Carne artesanal, bacon crocante e creme de cheddar.</p>
+                    <p>preço:R$ <span id="id-2" style="color: green;">15,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Bacon Cheddar', 15.00, 'id-2')">Adicionar</button>
                 
                 </div>
                
                
                 <div>
-                     <div >
+                     <div class="img-container">
                     <img src="imagens/hamburguer.jpg" alt="hamburger simples">
                     </div>
                 
-                    <h3>hamburger simples</h3>
-                    <p>descrição: pão, carne, queijo, alface, tomate</p>
-                    <p>preço:R$ <span id="id-12" style="color: green;">15,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('hamburger simples', 15.00, 'id-12')">Adicionar</button>
+                    <h3> Cream Burger</h3>
+                    <p><strong>descrição:</strong>Carne artesanal, creme cheese, alface e tomate. </p>
+                    <p>preço:R$ <span id="id-3" style="color: green;">15,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Cream Burger', 15.00, 'id-3')">Adicionar</button>
                 </div>
                
                 <div>
-                    <div >
+                    <div class="img-container">
                     <img src="imagens/hamburguer.jpg" alt="hamburger simples">
                     </div>
                 
-                    <h3>hamburger simples</h3>
-                    <p>descrição: pão, carne, queijo, alface, tomate</p>
-                    <p>preço:R$ <span id="id-13" style="color: green;">15,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('hamburger simples', 15.00, 'id-13')">Adicionar</button>
+                    <h3>Coalho Burger</h3>
+                    <p><strong>descrição:</strong>Carne artesanal, queijo coalho grelhado, alface e tomate. </p>
+                    <p>preço:R$ <span id="id-4" style="color: green;">15,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Coalho Burger', 15.00, 'id-4')">Adicionar</button>
                 
                 </div>
                 <div >
-                    <div >
+                    <div class="img-container">
                        <img src="imagens/hamburguer.jpg" alt="hamburger simples">
                     </div>
                   
-                    <h3>hamburger simples</h3>
-                    <p>descrição: pão, carne, queijo, alface, tomate</p>
-                    <p>preço:R$ <span id="id-14" style="color: green;">15,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('hamburger simples', 15.00, 'id-14')">Adicionar</button>
+                    <h3>Nordestino Burger</h3>
+                    <p><strong>descrição:</strong>Carne de sol desfiada, queijo coalho e creme cheese. </p>
+                    <p>preço:R$ <span id="id-5" style="color: green;">15,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Nordestino Burger', 15.00, 'id-5')">Adicionar</button>
                 </div>
+                 <div >
+                    <div class="img-container"  >
+                       <img src="imagens/hamburguer.jpg" alt="hamburger simples">
+                    </div>
+                  
+                    <h3>Frango Cream</h3>
+                    <p><strong>descrição:</strong>Frango desfiado temperado, creme cheese, alface e tomate. </p>
+                    <p>preço:R$ <span id="id-6" style="color: green;">15,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Frango Cream', 15.00, 'id-6')">Adicionar</button>
+                </div>
+                
                 
                
             </article>
@@ -126,55 +134,47 @@
                       <img src="imagens/batata.jpg" alt="batata frita">
                    </div>
                     <h3>Batata frita tradicional</h3>
-                    <p>descrição: batata frita sal e pimenta </p>
-                    <p>preço:R$ <span id="id-15" style="color: green;">12,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('batata frita tradicional', 12.00, 'id-15')">Adicionar</button>
+                    <p><strong>descrição:</strong> batata frita sal e pimenta </p>
+                    <p>preço:R$ <span id="id-10" style="color: green;">12,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('batata frita tradicional', 12.00, 'id-10')">Adicionar</button>
                 </div>
                 
                 <div>
                     <div class="imagens">
                     <img src="imagens/batata.jpg" alt="batata frita">
                    </div>
-                    <h3>Batata frita tradicional</h3>
-                    <p>descrição: batata frita sal e pimenta </p>
-                    <p>preço:R$ <span id="id-16" style="color: green;">12,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('batata frita tradicional', 12.00, 'id-16')">Adicionar</button>
+                    <h3>Batata suprema</h3>
+                    <p><strong>descrição: </strong>Batata com Bacon e Cheddar Bacon crocante + creme de cheddar.</p>
+                    <p>preço:R$ <span id="id-11" style="color: green;">12,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('batata suprema', 12.00, 'id-11')">Adicionar</button>
                 </div>
                
                 <div>
                    <div class="imagens">
                       <img src="imagens/batata.jpg" alt="batata frita">
                    </div>
-                    <h3>Batata frita tradicional</h3>
-                    <p>descrição: batata frita sal e pimenta </p>
-                    <p>preço:R$ <span id="id-17" style="color: green;">12,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('batata frita tradicional', 12.00, 'id-17')">Adicionar</button>
+                    <h3>Batata nordestina</h3>
+                    <p><strong>descrição:</strong> Batata com Carne de Sol e Cream Cheese Carne de sol desfiada + creme cheese.</p>
+                    <p>preço:R$ <span id="id-12" style="color: green;">12,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('batata nordestina', 12.00, 'id-12')">Adicionar</button>
                 </div>
                   
-                <div>
-                 <div class="imagens">
-                    <img src="imagens/batata.jpg" alt="batata frita">
-                 </div>
-                    <h3>Batata frita tradicional</h3>
-                    <p>descrição: batata frita sal e pimenta </p>
-                    <p>preço:R$ <span id="id-18" style="color: green;">12,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('batata frita tradicional', 12.00, 'id-18')">Adicionar</button>
-                </div>
+               
                  
             </article>
         </section>
-        <!--seçao pizzas-->
-         <section id ="pizzas" class="conteudo"  style="display: none;">
-            <h2>pizzas</h2>
+        <!--seçao arabe-->
+         <section id ="arabe" class="conteudo"  style="display: none;">
+            <h2>Sanduíches no pão arabe</h2>
             <article>
               <div>
                 <div style="margin-top: 0%; ">
                     <img src="imagens/pizza.jpg" alt="pizza calabresa">
                 </div>
-                    <h3>pizza calabresa </h3>
-                    <p>descrição: calbresa , queijo , molho de tomate e cebola</p>
-                    <p>preço:R$<span id="id-20" style="color: green;">23,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('pizza calabresa', 23.00, 'id-20')">Adicionar</button>
+                    <h3> Árabe de Carne Artesanal </h3>
+                    <p><strong>descrição:</strong>Carne artesanal, queijo, alface e tomate. </p>
+                    <p>preço:R$<span id="id-7" style="color: green;">23,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Árabe de Carne Artesanal', 23.00, 'id-7')">Adicionar</button>
 
                 </div>
                 
@@ -182,10 +182,10 @@
                 <div >
                     <img src="imagens/pizza.jpg" alt="pizza calabresa">
                 </div>
-                    <h3>pizza calabresa </h3>
-                    <p>descrição: calbresa , queijo , molho de tomate e cebola</p>
-                    <p>preço:R$<span id="id-21" style="color: green;">23,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('pizza calabresa', 23.00, 'id-21')">Adicionar</button>
+                    <h3> Árabe de Frango cream </h3>
+                    <p><strong>descrição:</strong>Frango desfiado, creme cheese, alface e tomate. </p>
+                    <p>preço:R$<span id="id-8" style="color: green;">23,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Árabe de Frango cream', 23.00, 'id-8')">Adicionar</button>
 
                 </div>
                
@@ -193,23 +193,13 @@
                 <div style="margin-top: 0%;">
                     <img src="imagens/pizza.jpg" alt="pizza calabresa">
                 </div>
-                    <h3>pizza calabresa </h3>
-                    <p>descrição: calbresa , queijo , molho de tomate e cebola</p>
-                    <p>preço:R$<span id="id-22" style="color: green;">23,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('pizza calabresa', 23.00, 'id-22')">Adicionar</button>
+                    <h3>Árabe Nordestino </h3>
+                    <p><strong>descrição:</strong>Carne de sol, queijo coalho e creme cheese </p>
+                    <p>preço:R$<span id="id-9" style="color: green;">23,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Árabe Nordestino', 23.00, 'id-9')">Adicionar</button>
 
                 </div>
                 
-                <div>
-                <div style="margin-top: 0%;">
-                    <img src="imagens/pizza.jpg" alt="pizza calabresa">
-                </div>
-                    <h3>pizza calabresa </h3>
-                    <p>descrição: calbresa , queijo , molho de tomate e cebola</p>
-                    <p>preço:R$<span id="id-23" style="color: green;">23,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('pizza calabresa', 23.00, 'id-23')">Adicionar</button>
-
-                </div>
                
             </article>
         </section>
@@ -222,110 +212,74 @@
                 <div style="margin-top: 0%;">
                     <img src="imagens/suco.jpg" alt="suco de laranja">
                 </div>
-                    <h3>suco de laranja</h3>
-                    <p>descrição: suco de laranja natural</p>
-                    <p>preço: <span id="id-24" style="color: green;">R$9,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('suco de laranja', 9.00, 'id-24')">Adicionar</button>
+                    <h3>Pepsi</h3>
+                    <p><strong>descrição:</strong> refrigerante 1L</p>
+                    <p>preço: <span id="id-13" style="color: green;">R$9,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Pepsi 1L', 9.00, 'id-13')">Adicionar</button>
                 </div>
                
                 <div>
                  <div >
                     <img src="imagens/suco.jpg" alt="suco de laranja">
                 </div>
-                    <h3>suco de laranja</h3>
-                    <p>descrição: suco de laranja natural</p>
-                    <p>preço: <span id="id-25" style="color: green;">R$9,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('suco de laranja', 9.00, 'id-25')">Adicionar</button>
+                    <h3>Guaraná</h3>
+                    <p><strong>descrição:</strong> refrigerante 1L</p>
+                    <p>preço: <span id="id-14" style="color: green;">R$9,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Guaraná 1L', 9.00, 'id-14')">Adicionar</button>
                 </div>
                
                 <div>
                    <div style="margin-top: 0%;">
                       <img src="imagens/suco.jpg" alt="suco de laranja">
                    </div>
-                    <h3>suco de laranja</h3>
-                    <p>descrição: suco de laranja natural</p>
-                    <p>preço: <span id="id-26" style="color: green;">R$9,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('suco de laranja', 9.00, 'id-26')">Adicionar</button>
+                    <h3>Sukita</h3>
+                    <p><strong>descrição:</strong> refrigerante 1L</p>
+                    <p>preço: <span id="id-15" style="color: green;">R$9,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Sukita 1L', 9.00, 'id-15')">Adicionar</button>
                 </div>
                
                 <div>
                     <div style="margin-top: 0%;">
                       <img src="imagens/suco.jpg" alt="suco de laranja">
                    </div>
-                    <h3>suco de laranja</h3>
-                    <p>descrição: suco de laranja natural</p>
-                    <p>preço: <span id="id-27" style="color: green;">R$9,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('suco de laranja', 9.00, 'id-27')">Adicionar</button>
+                    <h3>Coca cola</h3>
+                    <p><strong>descrição:</strong> refrigerante lata 350ml</p>
+                    <p>preço: <span id="id-16" style="color: green;">R$9,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Coca cola LT', 9.00, 'id-16')">Adicionar</button>
                 </div>
                 
                 <div>
                    <div style="margin-top: 0%;">
                       <img src="imagens/suco.jpg" alt="suco de laranja">
                    </div>
-                    <h3>suco de laranja</h3>
-                    <p>descrição: suco de laranja natural</p>
-                    <p>preço: <span id="id-28" style="color: green;">R$9,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('suco de laranja', 9.00, 'id-28')">Adicionar</button>
+                    <h3>Guaraná</h3>
+                    <p><strong>descrição:</strong> refrigerante lata 350ml</p>
+                    <p>preço: <span id="id-17" style="color: green;">R$9,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Guaraná LT', 9.00, 'id-17')">Adicionar</button>
+                </div>
+                <div>
+                   <div style="margin-top: 0%;">
+                      <img src="imagens/suco.jpg" alt="suco de laranja">
+                   </div>
+                    <h3>Pepsi</h3>
+                    <p><strong>descrição:</strong> refrigerante lata 350ml</p>
+                    <p>preço: <span id="id-18" style="color: green;">R$9,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Pepsi LT', 9.00, 'id-18')">Adicionar</button>
+                </div>
+                <div>
+                   <div style="margin-top: 0%;">
+                      <img src="imagens/suco.jpg" alt="suco de laranja">
+                   </div>
+                    <h3>Fanta</h3>
+                    <p><strong>descrição:</strong> refrigerante lata 350ml</p>
+                    <p>preço: <span id="id-19" style="color: green;">R$9,00</span></p>
+                    <button class="btn-add" onclick="adicionarAoCarrinho('Fanta LT', 9.00, 'id-19')">Adicionar</button>
                 </div>
                
             </article>
         </section>
-        <!--seçao pasteis-->
-         <section id ="pasteis" class="conteudo" style="display: none;">
-            <h2>pasteis</h2>
-            <article>
-                
-                <div>
-                    <div style="margin-top: 0%;">
-                       <img src="imagens/pastel.jpg"  alt="pastel de carne com queijo">   
-                    </div>
-                    <h3>pastel tradicional</h3>
-                    <p>descrição: pastel de carne com queijo</p>
-                    <p>preço:R$ <span id="id-29" style="color: green;">9,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('pastel tradicional', 9.00, 'id-29')">Adicionar</button>
-                </div>
-               
-                <div>
-                    <div >
-                      <img src="imagens/pastel.jpg"  alt="pastel de carne com queijo">   
-                    </div>
-                    <h3>pastel tradicional</h3>
-                    <p>descrição: pastel de carne com queijo</p>
-                    <p>preço:R$ <span id="id-30" style="color: green;">9,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('pastel tradicional', 9.00, 'id-30')">Adicionar</button>
-                </div>
-                <div>
-                   <div style="margin-top: 0%;">
-                      <img src="imagens/pastel.jpg"  alt="pastel de carne com queijo">   
-                   </div>
-                    <h3>pastel tradicional</h3>
-                    <p>descrição: pastel de carne com queijo</p>
-                    <p>preço:R$ <span id="id-31" style="color: green;">9,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('pastel tradicional', 9.00, 'id-31')">Adicionar</button>
-                </div>
-               
-                <div>
-                   <div style="margin-top: 0%;">
-                      <img src="imagens/pastel.jpg"  alt="pastel de carne com queijo">   
-                   </div>
-                    <h3>pastel tradicional</h3>
-                    <p>descrição: pastel de carne com queijo</p>
-                    <p>preço:R$ <span id="id-32" style="color: green;">9,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('pastel tradicional', 9.00, 'id-32')">Adicionar</button>
-                </div>
-                 
-                <div>
-                    <div style="margin-top: 0%;">
-                      <img src="imagens/pastel.jpg"  alt="pastel de carne com queijo">   
-                   </div>
-                    <h3>pastel tradicional</h3>
-                    <p>descrição: pastel de carne com queijo</p>
-                    <p>preço:R$ <span id="id-33" style="color: green;">9,00</span></p>
-                    <button class="btn-add" onclick="adicionarAoCarrinho('pastel tradicional', 9.00, 'id-33')">Adicionar</button>
-                </div>
-               
-            </article>
-        </section>
+       
+        
     
         
     </main>
