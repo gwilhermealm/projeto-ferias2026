@@ -257,3 +257,61 @@ localStorage.clear()
 }
 //funçao atuaçizar preços
 
+//funçao mostrar seçao pagamento retirada ou entrega
+window.retiradaEntrega = function(idsDaSecao) {
+    // 1. Esconde as duas seções primeiro
+    document.getElementById('pg-entrega').style.display = 'none';
+    document.getElementById('pg-retirada').style.display = 'none';
+
+    // 2. Mostra apenas a que foi clicada
+    const secaoParaMostrar = document.getElementById(idsDaSecao);
+    if (secaoParaMostrar) {
+        secaoParaMostrar.style.display = 'block';
+    }
+}
+
+
+//enviar pedido retirada
+window.enviarPedidoRetirada = function enviarPedidoRetirada() {
+    const telefone = "5585997897202" //telefone que vai ser enviado pedido
+    let pedidosalvo=localStorage.getItem('pedido')
+    let valorpedido=localStorage.getItem('totalpag')
+    const mensagem = document.getElementById('mensagemRetirada')?.value|| ''
+ 
+
+    
+
+    
+    //formatar mensagem pedido
+    let produtosPedido =JSON.parse(pedidosalvo)
+    let pedidoformatado = produtosPedido.map(item => {
+        return `${item.quantidade}x ${item.nome} - R$ ${item.preco}`
+    }).join('\n')
+       
+       let nome = document.getElementById('nomeRetirada')?.value || ''
+       let formaDePagamento = document.getElementById('metodo-pagamentoRetirada')?.value || '';
+
+   
+    const texto = `ola! Meu nome é *${nome}*\n\n*PEDIDO* ${pedidoformatado}\n\n *VALOR TOTAL:*${valorpedido} \n \n *forma de pagamento* ${formaDePagamento}\n \n *OBSERVAÇÔES*${mensagem}`
+
+    const urlWaMe = `https://wa.me/${telefone}?text=${encodeURIComponent(texto)}`;
+
+    window.open(urlWaMe, '_blank');
+    localStorage.clear()
+    
+  
+}
+
+
+window.confirmarPedidoRetirada = function confirmarPedidoRetirada(){
+      let formaDePagamento = document.getElementById('metodo-pagamentoRetirada')?.value || '';
+      let nome = document.getElementById('nomeRetirada')?.value || ''
+   
+  if (formaDePagamento && nome) {
+      alert('Pedido confirmado');
+      enviarPedidoRetirada()
+   } else {
+     alert('Preencha todos os campos');
+   }
+}
+

@@ -6,6 +6,7 @@
     <title>Pagamento</title>
     <link rel="stylesheet" href="style.css">
     <style> 
+
 .conteudo-pagamento {
     max-width: 600px;
     margin: 0 auto;
@@ -42,6 +43,20 @@
     border-radius: 4px;
     cursor: pointer;
 }
+main{
+    margin-top: 30px;
+}
+.retirada, .entrega {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    
+}
 
 
 
@@ -70,8 +85,15 @@
 
             </div>
             <h2>Finalizar Pedido</h2>
+            <span>
+                <button class="retirada" onclick="retiradaEntrega('pg-retirada')">Retirada</button>
+                <button class="entrega" onclick="retiradaEntrega('pg-entrega')">Entrega</button>
 
-            <form id="form-pagamento">
+            </span>
+            
+            <div id="pg-entrega" >
+                <!--form  entrega-->
+            <form id="form-pagamento" class="conteudo">
                 <label for="nome">Nome Completo:</label>
                 <input type="text" id="nome" name="nome" required>
 
@@ -97,7 +119,34 @@
                 <input type="text" name="mensagem" id="mensagem" placeholder="alguma alteraçao no itens do pedido?">
 
             </form>
-            <button class="btn-confirmar"  onclick="confirmarPedido()">Confirmar Pedido</button>
+             <button class="btn-confirmar"  onclick="confirmarPedido()">Confirmar Pedido</button>
+            </div>
+
+            <!-- form retirada-->
+            <div id="pg-retirada" style="display: none;" class="conteudo">
+
+                 
+            <form id="form-pagamento" >
+                    <label>Nome para Retirada:</label>
+                    <input type="text" placeholder="Seu nome" id="nomeRetirada">
+                    <label for="metodo-pagamento">Método de Pagamento:</label>
+                <select id="metodo-pagamentoRetirada" name="pagamento" required>
+                    <option value="">Selecione</option>
+                    <option value="cartao">Cartão</option>
+                    <option value="dinheiro">Dinheiro</option>
+                    <option value="pix">PIX</option>
+                </select>
+                <label for="mensagemRetirada">Mensagem *(se dinheiro:precisa de troco?)*</label>
+                <input type="text" name="mensagem" id="mensagemRetirada" placeholder="alguma alteraçao no itens do pedido?">
+
+
+            
+            </form>
+             <button class="btn-confirmar"  onclick="confirmarPedidoRetirada()">Confirmar Pedido</button>
+     
+            </div>
+        
+            
         </section>
     </main>
     <script type="module" src="script.js"></script>
