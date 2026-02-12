@@ -77,6 +77,11 @@ onValue(cardapioRef, (snapshot) => {
  
 //atualizar interface do carrinho
 window.adicionarAoCarrinho = function adicionarAoCarrinho(nomeItem, precoItemOriginal, idDoElemento) {
+       let horaAtual = new Date().getHours();
+       console.log('Hora atual:', horaAtual);
+       //valida se a loja esta aberta ou fechada - funçao so funciona das 18hrs as 00hrs
+  if(horaAtual >= 18 && horaAtual < 24){
+
     const elementoPreco = document.getElementById(idDoElemento);
     let precoFinal = precoItemOriginal;
 
@@ -104,7 +109,11 @@ window.adicionarAoCarrinho = function adicionarAoCarrinho(nomeItem, precoItemOri
     
     // Atualiza a interface
     window.atualizarInterfaceCarrinho();
+} else {
+   Swal.fire("A loja está fechada. Aceitamos pedidos das 18h às 00h.");
+} 
 }
+
 window.removerDoCarrinho = function(index) {
     window.carrinho.splice(index, 1);
     window.atualizarInterfaceCarrinho();
@@ -114,11 +123,17 @@ window.removerDoCarrinho = function(index) {
 
 
 window.abrirFecharCarrinho = function abrirFecharCarrinho(){
+    const horaAtual = new Date().getHours();
+
+ if(horaAtual >= 18 && horaAtual < 24){
     const carLateral=document.getElementById('carrinho-lateral')
      //alterar classe do carinho lateral
      carLateral.classList.toggle('cart-open')
      carLateral.classList.toggle('cart-close')
 
+}else {
+    Swal.fire("A loja está fechada. Aceitamos pedidos das 18h às 00h.");
+}
 }
 window.atualizarInterfaceCarrinho = function atualizarInterfaceCarrinho() {
     const containerItens = document.getElementById('carrinho-itens');
@@ -164,6 +179,8 @@ window.atualizarInterfaceCarrinho = function atualizarInterfaceCarrinho() {
 
  //parte pagamento
  document.addEventListener('DOMContentLoaded', () => {
+    //atualiza o status da loja 
+    statusloja()
   const bairro = document.getElementById('bairro');
   const tpedido = document.getElementById('t-pedido');
   let txEntrega=document.getElementById('tx-entrega')
@@ -204,6 +221,7 @@ window.atualizarInterfaceCarrinho = function atualizarInterfaceCarrinho() {
   if (bairro) {
     bairro.addEventListener('change', atualizarTotalComTaxa);
   }
+
 });
 
 
@@ -314,4 +332,20 @@ window.confirmarPedidoRetirada = function confirmarPedidoRetirada(){
      alert('Preencha todos os campos');
    }
 }
+
+window.statusloja = function statusloja(){
+    let status = document.getElementById('status');
+    let horaAtual = new Date().getHours();
+
+    if(horaAtual >= 0 && horaAtual < 18){
+       status.innerText = 'loja fechada ⛔';
+       status.style.backgroundColor = 'red';
+    } else if (horaAtual >= 23 && horaAtual < 24){
+         status.innerText = 'loja fecha em breve 00 hrs ⚠️ ';
+         status.style.backgroundColor = 'orange';
+
+
+}
+}
+
 

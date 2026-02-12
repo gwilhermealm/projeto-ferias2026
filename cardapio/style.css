@@ -66,6 +66,19 @@ nav > button:hover{
     border-bottom: solid var(--primary-color) ;
     
 }
+#lojaON{
+    padding: 20px;
+    text-align: center;
+}
+
+#status{
+    background-color: #2e7d32;
+    color: white;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 20px;
+
+}
 
 button{
     width: 10rem;
