@@ -237,10 +237,21 @@ window.confirmarPedido = function confirmarPedido(){
     
     // autenticação dos campos
    if (formaDePagamento && nome && endereco && veriBairro) {
-      alert('Pedido confirmado');
+
+        Swal.fire({
+        title: "Pedido confirmado!",
+        icon: "success",
+        draggable: true
+        });
+        console.log('Pedido confirmado');
       enviarPedido()
    } else {
-     alert('Preencha todos os campos');
+       Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Preencha todos os campos!",
+        footer: '<a href="#">Why do I have this issue?</a>'
+});
    }
 }
 
