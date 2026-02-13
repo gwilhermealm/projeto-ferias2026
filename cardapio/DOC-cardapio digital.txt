@@ -1,0 +1,74 @@
+1. Integração com Firebase (Preços em Tempo Real)
+
+
+(onValue): O código "escuta" qualquer alteração na referência cardapio/. Quando um preço muda no banco de dados, o script percorre as categorias (hamburgers, arabe, batatas, bebidas) e atualiza o texto dos elementos HTML correspondentes (id-${id}) automaticamente, formatando-os para duas casas decimais.
+
+função onValue
+
+Como ela funciona?
+A onValue "observa" um caminho específico no seu banco de dados. Sempre que algo é alterado, excluído ou adicionado nesse caminho, ela recebe um "snapshot" (uma foto) do estado atual dos dados.
+
+Quando usar onValue vs get?
+
+onValue :Escuta contínua; dispara em cada mudança.
+ caso de uso: Chats, placares ao vivo, notificações.
+
+get : Busca o dado uma única vez e fecha a conexão.
+
+casos de uso: Carregar perfil de usuário, configurações iniciais.
+
+2. Gerenciamento do Carrinho (LocalStorage)
+
+O carrinho é persistente, ou seja, se o usuário atualizar a página, os itens continuam lá.
+
+Inicialização: O array carrinho é carregado do localStorage ou inicia vazio.
+
+Adicionar Item (adicionarAoCarrinho): * Verifica o horário (só permite adicionar entre 18h e 00h).
+
+Captura o nome e o preço (do HTML ou do parâmetro).
+
+Gera um ID único e salva o objeto no array e no localStorage.
+
+Remover Item (removerDoCarrinho): Remove o item do array pelo índice e chama a atualização da interface.
+
+3. Controle de Horário e Status da Loja
+
+O sistema possui travas de segurança baseadas no horário local:
+
+statusloja: Altera visualmente uma etiqueta no site. Se for antes das 18h, exibe "loja fechada ⛔" em vermelho. Se for entre 23h e 00h, exibe um alerta de que a loja fechará em breve.
+
+Validação de Pedido: As funções de abrir o carrinho e adicionar itens bloqueiam a ação caso o horário atual esteja fora do intervalo de funcionamento (18h às 00h).
+
+4. Interface Dinâmica
+
+mostrarSecao: Esconde todas as seções com a classe .conteudo e exibe apenas a seção solicitada (ex: mudar de 'cardápio' para 'pagamento').
+
+atualizarInterfaceCarrinho: Limpa o HTML do carrinho lateral e o reconstrói com os itens atuais, calcula o valor total, atualiza o contador de itens no ícone do carrinho e salva o total no localStorage.
+
+
+5. Sistema de Entrega e Taxas
+
+
+Dentro da seção de pagamento, o script gerencia a logística:
+
+Cálculo de Taxas: Ao mudar o bairro no campo de seleção, a função atualizarTotalComTaxa adiciona valores específicos (R$ 2,00, R$ 4,00 ou R$ 6,00) ao subtotal do pedido.
+
+Alternância Entrega/Retirada: A função retiradaEntrega alterna a exibição dos formulários dependendo da escolha do usuário.
+
+
+6. Finalização e Envio via WhatsApp
+Como o sistema não possui um backend complexo de processamento de pedidos, ele utiliza o WhatsApp como canal de fechamento:
+
+Validação: Verifica se campos obrigatórios (nome, endereço, forma de pagamento) foram preenchidos usando SweetAlert (Swal) para alertas amigáveis.
+
+Formatação da Mensagem: Converte o array de produtos em uma string legível, incluindo quantidades, preços, taxas e observações.
+
+Envio: Abre uma nova aba com o link wa.me, enviando o pedido formatado diretamente para o número 
+
+Limpeza: Após o envio, o comando localStorage.clear() esvazia o carrinho para uma próxima compra.
+
+
+
+
+
+
