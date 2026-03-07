@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login painel de controle</title>
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <section class="section-login" id="section-login">
+    <article class="login-title">
+        <h2>Acesso Admin</h2>
+    </article>
+       
+       
+    <div class="admin-login">
+    
+        
+    <div class="input-group">
+        <label for="email">Email administrador</label>
+        <input type="email" name="" id="email" placeholder="Digite email de administrador" autocomplete="off">
+    
+    </div>
+    
+    <div class="input-wrapper" style="position: relative;">
+        <label for="senha-input">Senha do Firebase:</label>
+        <input type="password" id="senha-input" placeholder="Digite a senha">
+        
+        <span id="toggle-password" onclick="alternarVisualizacao()" 
+              style="position: absolute; right: 15px; top: 60%; transform: translateY(-50%); cursor: pointer; opacity: 0.6;">
+            👁️
+        </span>
+        
+    </div>
+    </div>
+        <button id="btn-login" onclick="fazerLogin()" style="background-color: var(--primary);">Entrar</button>
+    </div>
+   </div>
+  </section>
+</body>
+<script type="module" src="js/login.js"></script>
+</html>
