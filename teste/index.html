@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Impressão Invisível</title>
+    <style>
+        /* Estilo básico para sua tela */
+        body { font-family: sans-serif; padding: 20px; }
+        textarea { width: 300px; height: 150px; display: block; margin-bottom: 10px; }
+        
+        /* O segredo: o iframe fica escondido */
+        #iframeImpressao {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <textarea id="minhaComanda" placeholder="Digite os itens da comanda..."></textarea>
+    <button onclick="imprimirNoIframe()">Imprimir Direto</button>
+
+    <iframe id="iframeImpressao"></iframe>
+
+    <script>
+        function imprimirNoIframe() {
+            const texto = document.getElementById('minhaComanda').value;
+            const iframe = document.getElementById('iframeImpressao');
+            
+            // Acessamos o "documento" dentro do iframe
+            const doc = iframe.contentWindow.document;
+
+            // Limpamos e escrevemos o conteúdo novo
+            doc.open();
+            doc.write(`
+                <html>
+                    <head>
+                        <style>
+                            /* Estilo específico para a largura da bobina térmica */
+                            body { 
+                                font-family: 'Courier New', monospace; 
+                                font-size: 10pt; 
+                                margin: 0; 
+                                padding: 5px;
+                            }
+                            pre { white-space: pre-wrap; }
+                        </style>
+                    </head>
+                    <body>
+                        <pre>${texto}</pre>
+                    </body>
+                </html>
+            `);
+            doc.close();
+
+            // Chamamos a impressão focando no conteúdo do iframe
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
+        }
+    </script>
+
+</body>
+</html>
