@@ -19,20 +19,69 @@
 
     
 }
+
+
 header{
     height: 250px;
     background-color: var(--primary-color) ;
    
 }
-header > h1{
-   margin-bottom: 150px;
-   text-align: center;
-   padding-top: 50px;
-   color: var(--secondary-color);
-   transform: translate(0 , 30%);
-
+/* slider header  */
+.picture{
+  box-shadow:-1px 1px 11px 1px rgba(59, 59, 59, 0.63); 
+}
+.slider {
+  width: 100vw;
+  height: 50vh;
+  position: relative;
+  overflow: hidden;
 }
 
+.slider figure {
+  width: 100vw;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  animation: slide 12s infinite;
+  transform: translateX(100%);
+
+}
+.slider figure:nth-child(1){
+  background-image: url("../imagens/imagens-header/header_grande.png");
+  animation-delay: 0s;
+}
+.slider figure:nth-child(2){
+  background-image: url("../imagens/imagens-header/header_grande.png");
+  animation-delay: 4s;
+}
+.slider figure:nth-child(3){
+  background-image: url("../imagens/imagens-header/header_grande.png");
+  animation-delay: 8s;
+}
+@keyframes slide {
+  0% {transform: translateX(100%);}
+  5% {transform: translateX(0%);}
+  33% {transform: translateX(0%);}
+  38% {transform: translateX(-100%);}
+  100% {transform: translateX(-100%);}
+
+}
+.slider::before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+}
+
+
+
+/*-------=--- */
 .carousel-nav button{
     width: auto;
     flex-shrink: 0;
@@ -189,7 +238,7 @@ article p:last-child {
 }
 
 /* Responsividade para celulares */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
  article > div {
         flex-direction: column; /* Empilha imagem e texto no celular */
         text-align: center;
@@ -211,6 +260,20 @@ article p:last-child {
     article h3 {
         margin-top: 10px;
     }
+    .slider figure:nth-child(1){
+  background-image: url("../imagens/imagens-header/header-P.png");
+  animation-delay: 0s;
+}
+.slider figure:nth-child(2){
+  background-image: url("../imagens/imagens-header/header-P.png");
+  animation-delay: 4s;
+}
+.slider figure:nth-child(3){
+  background-image: url("../imagens/imagens-header/header-P.png");
+  animation-delay: 8s;
+}
+
+
   
 }
 
