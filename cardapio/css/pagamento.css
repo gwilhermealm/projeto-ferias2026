@@ -1,0 +1,183 @@
+/* ========================================= */
+/* VARIÁVEIS E ESTILOS GERAIS DA PÁGINA      */
+/* ========================================= */
+:root {
+    --primary-color: #e63946;
+    --secondary-color: #f1faee;
+    --accent-color: #ffb703;
+    --text-dark: #1d3557;
+    --text-light: #f1faee;
+    --bg-card: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+}
+
+/* Reset básico para a página de pagamento */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Reutilização do estilo do Header do style.css principal */
+header {
+    height: auto;
+    padding-bottom: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+header h1 {
+    padding: 20px 0;
+    margin: 0;
+}
+
+/* Barra de Navegação (Botão Voltar) */
+.carousel-nav {
+    background-color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+    box-shadow: var(--shadow);
+}
+
+.voltar-cardapio {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-weight: bold;
+    color: var(--text-dark);
+    padding: 0 20px;
+    height: 100%;
+    transition: 0.3s;
+}
+
+.voltar-cardapio:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+/* ========================================= */
+/* ÁREA DE CONTEÚDO DO PAGAMENTO             */
+/* ========================================= */
+
+main {
+    margin-top: 30px;
+    padding: 0 15px;
+}
+
+.conteudo-pagamento {
+    max-width: 600px;
+    margin: 0 auto 50px auto;
+    padding: 25px;
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.conteudo-pagamento h2 {
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--accent-color);
+    display: block;
+    padding-bottom: 10px;
+}
+
+/* Resumo do Pedido */
+#meu-pedido {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.total-pedido {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+.total-pedido strong {
+    color: var(--primary-color);
+}
+
+/* Botões de Seleção (Entrega / Retirada) */
+.retirada, .entrega {
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 5px;
+    background-color: var(--text-dark);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 45%; /* Divide o espaço entre os dois */
+}
+
+.retirada:hover, .entrega:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Formulários */
+#form-pagamento {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+#form-pagamento label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+#form-pagamento input, 
+#form-pagamento select {
+    margin-bottom: 15px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+#form-pagamento input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(230, 57, 70, 0.2);
+}
+
+/* Botão Confirmar Pedido */
+.btn-confirmar {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px auto 0 auto;
+    background-color: #2e7d32; /* Verde de sucesso */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-confirmar:hover {
+    background-color: #1b5e20;
+}
+
+/* Ajustes para ecrãs pequenos (Telemóveis) */
+@media (max-width: 480px) {
+    .retirada, .entrega {
+        width: 100%;
+        margin: 5px 0;
+    }
+}

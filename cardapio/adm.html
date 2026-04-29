@@ -3,50 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Atualizar Preços</title>
+    <title>Admin - Painel de Controle</title>
     <link rel="stylesheet" href="css/admin.css">
-    
 </head>
 <body>
-   
-        <div class="logout">
-              <button class="btn-logout" onclick="fazerLogout()" >Sair do Painel</button>
-        </div>
-
-
-
     
-   <main>
-        <section id="secao-painel" >
-        
-            <div class="admin-container">
-            <h2>Painel de Preços</h2>
+    <section id="secao-painel">
+        <div id="dashboard-container" class="dashboard-layout">
+    
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h2>cardapio on</h2>
+                    <p>Admin Panel</p>
+                </div>
+                <nav class="sidebar-nav">
+                    <button class="nav-item active" onclick="mudarAba('resumo')">📊 Adicionar item</button>
+                    <button class="nav-item" onclick="mudarAba('comandas')">🖨️ Comandas</button>
+                    <button class="nav-item" onclick="mudarAba('produtos')">🍔 Produtos</button>
+                </nav>
+                <div class="sidebar-footer">
+                    <button class="btn-logout-side" onclick="fazerLogout()">Sair</button>
+                </div>
+            </aside>
 
-            <button onclick="salvarPrecos()">Atualizar Cardápio Online</button>
-            
-            <div class="footer-info">
-                Os preços serão atualizados em tempo real para os clientes.
-            </div>
+            <main class="main-dashboard">
+                <header class="top-header">
+                    <h1 id="titulo-pagina">Visão Geral</h1>
+                </header>
+
+                <section class="content-area">
+                    <div class="dashboard-card">
+                        <h3>Bem-vindo ao gerenciamento!</h3>
+                        <p>Aqui você poderá ver as métricas de hoje, ou alternar no menu ao lado para adicionar produtos e imprimir as comandas dos clientes.</p>
+                    </div>
+                </section>
+            </main>
         </div>
+    </section>
+    <div id="printable-area"></div>
 
-        </section>
+    <script type="module" src="js/adm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <section id="cupom">
-            <div class="admin-container">
-
-            <h2>Geração de Cupom</h2>
-            <button onclick="gerarCupom()">Gerar Cupom de Desconto</button>
-            <div class="footer-info">
-                Os preços serão atualizados em tempo real para os clientes.
-            </div>
-
-            </div>
-        </section>
-    </main>
-
-
- 
-  <script type="module" src="js/adm.js"></script>
- 
 </body>
 </html>
